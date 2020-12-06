@@ -7,13 +7,12 @@ use App\Models\Config;
 
 class SiteSettings extends Component
 {
-    public $name;
-    public $email;
+    public $site;
 
     public function mount(Config $config)
     {
-        $this->name = $config->where('key','site_info')->first()?$config->where('key','site_info')->first()->value['name']:'';
-        $this->email = $config->where('key','site_info')->first()?$config->where('key','site_info')->first()->value['email']:'';
+        $info = Config::find('site_info');
+        $this->site = $info?$info->value:null;
     }
 
     public function render()
@@ -23,11 +22,33 @@ class SiteSettings extends Component
 
     public function saveSiteSettings()
     {
-        $inputs = array('name'=>$this->name,'email'=>$this->email);
         Config::updateOrCreate(['key'=>'site_info'],[
             'group' => 'site_settings',
             'key' => 'site_info',
-            'value' => $inputs,
+            'value' => $this->site,
         ]);
+        $this->emit('swal:alert', [
+            'type'    => 'success',
+            'title'   => 'Site Information successfully saved!!',
+            'timeout' => 3000,
+            'icon' => 'success'
+        ]);
+        /*         sample sweet alert messages use from here  */
+
+        // $this->emit('swal:modal', [
+        //     'icon' => 'success',
+        //     'type'  => 'success',
+        //     'title' => 'Success!!',
+        //     'text'  => "This is a success message",
+        // ]);
+        // $this->emit("swal:confirm", [
+        //     'type'        => 'warning',
+        //     'title'       => 'Are you sure?',
+        //     'text'        => "You won't be able to revert this!",
+        //     'confirmText' => 'Yes, delete!',
+        //     'method'      => 'appointments:delete',
+        //     'params'      => [], // optional, send params to success confirmation
+        //     'callback'    => '', // optional, fire event if no confirmed
+        // ]);
     }
 }

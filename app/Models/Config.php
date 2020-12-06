@@ -9,6 +9,8 @@ class Config extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'key';
+    protected $KeyType = 'string';
     protected $casts = [
         'value'=> 'array',
     ];
