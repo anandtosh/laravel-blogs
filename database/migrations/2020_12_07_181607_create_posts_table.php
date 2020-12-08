@@ -15,12 +15,13 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('user_id');
+            $table->bigInteger('user_id');
             $table->string('title',50);
             $table->string('slug',50);
-            $table->boolean('published');
+            $table->boolean('published')->default(0);
             $table->json('content')->nullable();
             $table->text('featured_image',500)->nullable();
+            $table->text('thumbnail',500)->nullable();
             $table->timestamps();
         });
     }
