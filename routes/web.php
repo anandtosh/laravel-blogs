@@ -21,6 +21,10 @@ Route::get('configs',function(){
     return view('backend.configs');
 })->name('configs');
 
+Route::get('posts',function(){
+    return view('backend.posts');
+})->name('posts');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Config extends Model
+class Post extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'key';
-    protected $KeyType = 'string';
+    protected $primaryKey = 'id';
     protected $casts = [
-        'value'=> 'array',
+        'content'=> 'array',
     ];
 
     protected $fillable = [
-        'key','value','group'
+        'title','content','slug','published','featured_image'
     ];
 }

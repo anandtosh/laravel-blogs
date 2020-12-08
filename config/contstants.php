@@ -9,6 +9,11 @@ return [
             'icon' => '',
         ],
         [
+            'name' => 'Posts',
+            'route' => 'posts',
+            'icon' => '',
+        ],
+        [
             'name' => 'Dashboard',
             'route' => 'dashboard',
             'icon' => '',
