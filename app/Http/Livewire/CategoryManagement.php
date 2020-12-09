@@ -3,28 +3,28 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class PostManagement extends Component
+class CategoryManagement extends Component
 {
-    public $post;
-    public $posts;
+    public $category;
+    public $categories;
     public $payload;
     public $list_page = true;
     protected $listeners = [
-        'deletePost'=>'deletePost',
+        'deleteCategory'=>'deleteCategory',
         'refreshThis'=>'$refresh'
         ];
     public function mount()
     {
-        $this->posts = Post::all();
+        $this->categories = Category::all();
     }
 
     public function slugMod()
     {
-        $this->post['slug']=Str::slug($this->post['title'],'-');
+        $this->category['slug']=Str::slug($this->category['title'],'-');
     }
 
     public function toggle()
@@ -34,14 +34,14 @@ class PostManagement extends Component
 
     public function render()
     {
-        return view('livewire.post-management');
+        return view('livewire.category-management');
     }
 
-    public function savePost()
+    public function saveCategory()
     {
-        $this->post['user_id'] =Auth::id();
-        Post::create($this->post);
-        $this->post = '';
+        $this->category['user_id'] =Auth::id();
+        Category::create($this->category);
+        $this->category = '';
         $this->list_page = true;
         $this->emit('refreshThis');
     }
@@ -53,14 +53,14 @@ class PostManagement extends Component
             'title'       => 'Are you sure?',
             'text'        => "You won't be able to revert this!",
             'confirmText' => 'Yes, delete!',
-            'method'      => 'deletePost',
+            'method'      => 'deleteCategory',
             'params'      => [$item], // optional, send params to success confirmation
             'callback'    => '', // optional, fire event if no confirmed
         ]);
     }
-    public function deletePost($id)
+    public function deleteCategory($id)
     {
-        Post::where('id',$id)->delete();
+        Category::where('id',$id)->delete();
         $this->emit('refreshThis');
     }
 }

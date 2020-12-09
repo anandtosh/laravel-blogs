@@ -25,6 +25,10 @@ Route::get('posts',function(){
     return view('backend.posts');
 })->name('posts');
 
+Route::get('categories',function(){
+    return view('backend.categories');
+})->name('categories');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
