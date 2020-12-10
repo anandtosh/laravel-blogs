@@ -38,7 +38,7 @@
                             {{$item->user->name}}
                         </div>
                         <div class="text-sm text-gray-500">
-                            {{$item->user->email}}
+                            {{'Created on '.$item->created_at->format('d, M Y')}}
                         </div>
                         </div>
                     </div>
@@ -48,9 +48,10 @@
                     <div class="text-sm text-gray-500">{{$item->slug}}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="px-4 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{$item->published?'green':'yellow'}}-100 text-{{$item->published?'green':'yellow'}}-800">
+                    {{-- <span class="px-4 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{$item->published?'green':'yellow'}}-100 text-{{$item->published?'green':'yellow'}}-800">
                         {{$item->published?'Published':'Draft'}}
-                    </span>
+                    </span> --}}
+                    @include('tailwind.radio',['id'=>'published'.$item->id,'checked'=>$item->published])
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{$item->content?count($item->content):'Empty'}}
@@ -70,6 +71,11 @@
                 @endforeach
             <!-- More rows... -->
             </tbody>
+            <tfoot class="bg-gray-100 divide-y divide-gray-200">
+            <td colspan="6" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {{$posts->links()}}
+            </td>
+            </tfoot>
         </table>
         </div>
     </div>

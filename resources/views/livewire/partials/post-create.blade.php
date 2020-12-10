@@ -1,7 +1,7 @@
 <div class="px-4 py-6 sm:px-0">
     <div class="bg-gray-50 shadow border-gray-200 rounded-lg">
         {{-- primary section --}}
-        <div class="px-4 pt-5 rounded-t bg-gradient-to-r from-green-100 to-green-400 sm:p-6">
+        <div class="px-4 py-2 rounded-t bg-gradient-to-r from-green-100 to-green-400 sm:px-6 sm:py-2">
             <h1 class="text-xl">Primary Post Information</h1>
         </div>
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-green-700">
@@ -41,7 +41,7 @@
 <div class="px-4 py-6 sm:px-0">
     <div class="bg-gray-50 shadow border-gray-200 rounded-lg">
         {{-- post content --}}
-        <div class="px-4 rounded-t bg-gradient-to-r from-red-100 to-red-400 sm:p-6">
+        <div class="px-4 py-2 rounded-t bg-gradient-to-r from-red-100 to-red-400 sm:px-6 sm:py-2">
             <h1 class="text-xl">Post Content</h1>
         </div>
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-red-700">

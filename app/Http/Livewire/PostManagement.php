@@ -8,11 +8,13 @@ use App\Models\Category;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 
 class PostManagement extends Component
 {
+    use WithPagination;
     public $post;
-    public $posts;
+    // public $posts;
     public $categories;
     public $list_page = true;
     protected $listeners = [
@@ -22,7 +24,7 @@ class PostManagement extends Component
         ];
     public function mount()
     {
-        $this->posts = Post::all();
+
         $this->categories = Category::all();
     }
 
@@ -38,7 +40,9 @@ class PostManagement extends Component
 
     public function render()
     {
-        return view('livewire.post-management');
+        return view('livewire.post-management',[
+            'posts'=>Post::paginate(5)
+        ]);
     }
 
     public function savePost()
