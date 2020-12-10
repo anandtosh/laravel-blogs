@@ -42,5 +42,9 @@ return [
         ],
     ],
 
+    'tailwind' => [
+        'input_d' => 'form-input rounded-md shadow-sm mt-1 block w-full',
+        'select_d' => 'form-select rounded-md shadow-sm mt-1 block w-full',
+    ],
 
 ];

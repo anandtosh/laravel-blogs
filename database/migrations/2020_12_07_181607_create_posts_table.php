@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->json('content')->nullable();
             $table->text('featured_image',500)->nullable();
             $table->text('thumbnail',500)->nullable();
+            $table->bigInteger('category_id')->nullable();
             $table->timestamps();
         });
     }

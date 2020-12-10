@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -11,15 +13,17 @@ class PostManagement extends Component
 {
     public $post;
     public $posts;
-    public $payload;
+    public $categories;
     public $list_page = true;
     protected $listeners = [
         'deletePost'=>'deletePost',
-        'refreshThis'=>'$refresh'
+        'refreshThis'=>'$refresh',
+        'editToggle' => 'editToggle'
         ];
     public function mount()
     {
         $this->posts = Post::all();
+        $this->categories = Category::all();
     }
 
     public function slugMod()
@@ -40,10 +44,24 @@ class PostManagement extends Component
     public function savePost()
     {
         $this->post['user_id'] =Auth::id();
-        Post::create($this->post);
+        if(isset($this->post['id']))
+        {
+            unset($this->post['created_at']);
+            unset($this->post['updated_at']);
+            Post::where('id',$this->post['id'])->update($this->post);
+        }else{
+            Post::create($this->post);
+            $this->posts = Post::all();
+        }
         $this->post = '';
         $this->list_page = true;
         $this->emit('refreshThis');
+        $this->emit('swal:alert', [
+            'type'    => 'success',
+            'title'   => 'Post successfully saved!!',
+            'timeout' => 3000,
+            'icon' => 'success'
+        ]);
     }
 
     public function delete($item)
@@ -58,9 +76,20 @@ class PostManagement extends Component
             'callback'    => '', // optional, fire event if no confirmed
         ]);
     }
+
     public function deletePost($id)
     {
         Post::where('id',$id)->delete();
         $this->emit('refreshThis');
+    }
+
+    public function editPost($id)
+    {
+        $this->post = Post::find($id)->toArray();
+        $this->emit('editToggle');
+    }
+    public function editToggle()
+    {
+        $this->toggle();
     }
 }

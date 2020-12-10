@@ -14,11 +14,7 @@
         @if($list_page)
             @include('livewire.partials.post-list')
         @else
-        <div class="px-4 py-6 sm:px-0">
-            <div class="bg-gray-50 shadow border-gray-200 rounded-lg h-96">
-                @include('livewire.partials.post-create')
-            </div>
-          </div>
+            @include('livewire.partials.post-create')
         @endif
     </div>
 </div>

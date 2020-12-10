@@ -17,6 +17,9 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Sections
                 </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category
+                </th>
                 <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Edit</span>
                 </th>
@@ -51,6 +54,9 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{$item->content?count($item->content):'Empty'}}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{isset($item->category_id)?$item->category->title:'None'}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <x-jet-button wire:click="editPost({{$item->id}})" class="bg-blue-600 hover:bg-blue-500 active:bg-blue-900">

@@ -12,7 +12,17 @@ class Category extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'title','description','slug','published','featured_image'
+        'title','description','slug','published','featured_image','parent_id'
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Category','id');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany('App\Models\Category','id','parent_id');
+    }
 
 }
