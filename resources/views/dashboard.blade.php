@@ -24,4 +24,5 @@
             </div>
         </div>
     </div>
+    <div id="player"></div>
 </x-app-layout>
