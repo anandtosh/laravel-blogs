@@ -17,7 +17,7 @@ class CreateConfigsTable extends Migration
             $table->id();
             $table->string('group');
             $table->string('key');
-            $table->json('value');
+            $table->longtext('value');
             $table->timestamps();
         });
     }

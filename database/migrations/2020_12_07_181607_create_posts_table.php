@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title',50);
             $table->string('slug',50);
             $table->boolean('published')->default(0);
-            $table->json('content')->nullable();
+            $table->longtext('content')->nullable();
             $table->text('featured_image',500)->nullable();
             $table->text('thumbnail',500)->nullable();
             $table->bigInteger('category_id')->nullable();
