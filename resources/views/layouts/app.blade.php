@@ -12,9 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.3/plyr.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         @livewireStyles
 
         <!-- Scripts -->
@@ -42,6 +46,7 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="https://cdn.plyr.io/3.6.3/plyr.polyfilled.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script>
@@ -105,6 +110,9 @@
                         SwalAlert(data.icon, data.title, data.timeout)
                     })
                 })
-            </script>
+        </script>
+        @stack('scripts')
+
+
     </body>
 </html>

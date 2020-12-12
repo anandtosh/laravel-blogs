@@ -4,7 +4,7 @@
             {{$list_page?'create new post':'list all post'}}
         </x-jet-button>
         @if(!$list_page)
-        <x-jet-button wire:click="savePost" class="bg-green-600 hover:bg-green-500 active:bg-green-900 ">
+        <x-jet-button wire:click="savePost" class="{{$twc->green_button}}">
             Save
         </x-jet-button>
         @endif

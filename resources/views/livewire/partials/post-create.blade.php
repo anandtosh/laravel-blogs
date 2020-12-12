@@ -45,7 +45,10 @@
             <h1 class="text-xl">Post Content</h1>
         </div>
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-red-700">
-            {{$twc->input_d}}
+            <div x-data="{ show: false }">
+            <button @click="show = true"  onclick="editorS()" class="{{$twc->green_button}}">Add Content</button>
+            @include('livewire.partials.post-content-modal')
+            </div>
         </div>
         {{-- post content --}}
     </div>

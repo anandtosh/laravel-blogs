@@ -60,10 +60,10 @@
                         {{isset($item->category_id)?$item->category->title:'None'}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <x-jet-button wire:click="editPost({{$item->id}})" class="bg-blue-600 hover:bg-blue-500 active:bg-blue-900">
+                    <x-jet-button wire:click="editPost({{$item->id}})" class="{{$twc->blue_button}}">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </x-jet-button>
-                    <x-jet-button wire:click="delete({{$item->id}})" class="bg-red-600 hover:bg-red-500 active:bg-red-900">
+                    <x-jet-button wire:click="delete({{$item->id}})" class="{{$twc->red_button}}">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </x-jet-button>
                     </td>
