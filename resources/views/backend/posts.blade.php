@@ -3,12 +3,13 @@
         @push('scripts')
         <script>
             var editorS = function() {
-                $('.summernote').summernote({
-                    focus: true,
-                    height: 300,
+                tinymce.init({
+                    selector: '#editor_ck',
+                    plugins: 'table anchor link autolink charmap lists preview emoticons hr insertdatetime toc advlist code codesample',
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist hr | code toc codesample |'
                 });
-                $('.note-editable').addClass('prose lg:prose-lg');
             };
+
         </script>
         @endpush
 </x-app-layout>

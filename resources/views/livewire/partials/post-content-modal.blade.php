@@ -31,7 +31,11 @@
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-yellow-700">
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-6">
-                    <div class="summernote">hello how are you</div>
+                    <div class="ck_container">
+                        <div id="editor_ck" style="width:100%;height:500px">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
