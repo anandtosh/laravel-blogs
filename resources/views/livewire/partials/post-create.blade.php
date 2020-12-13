@@ -62,10 +62,11 @@
                 nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
                 prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
              }">
-            <button @click="show = true"  onclick="editorS()" class="{{$twc->green_button}}">Add Content</button>
-            @include('livewire.partials.post-content-modal')
+            <button @click="show = true" onclick="editorS()" class="{{$twc->green_button_o}}">Add Content</button>
+            @include('livewire.partials.post.post-content-modal')
             </div>
         </div>
         {{-- post content --}}
     </div>
 </div>
+

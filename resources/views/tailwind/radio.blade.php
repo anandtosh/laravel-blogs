@@ -3,7 +3,7 @@
       <!-- toggle -->
       <div class="relative">
         <!-- input -->
-        <input id="{{$id}}" {{isset($name)?'name="'.$name.'"':''}} type="checkbox" {{isset($checked) && $checked==true?'checked':''}} class="hidden" />
+        <input id="{{$id}}" {!! $event??'' !!} {{isset($name)?'name="'.$name.'"':''}} type="checkbox" {{isset($checked) && $checked==true?'checked':''}} class="hidden" />
         <!-- line -->
         <div class="toggle__line w-10 h-4 bg-gray-200 rounded-full shadow-inner">
         </div>

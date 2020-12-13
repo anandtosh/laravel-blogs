@@ -51,7 +51,7 @@
                     {{-- <span class="px-4 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{$item->published?'green':'yellow'}}-100 text-{{$item->published?'green':'yellow'}}-800">
                         {{$item->published?'Published':'Draft'}}
                     </span> --}}
-                    @include('tailwind.radio',['id'=>'published'.$item->id,'checked'=>$item->published])
+                    @include('tailwind.radio',['id'=>'published'.$item->id,'checked'=>$item->published, 'event'=>'wire:click="publishStatus('.$item->id.')"' ])
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{$item->content?count($item->content):'Empty'}}

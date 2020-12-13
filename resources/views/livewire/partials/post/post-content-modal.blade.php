@@ -26,7 +26,15 @@
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
         {{-- content here --}}
         <div class="px-4 py-2 rounded-t bg-gradient-to-r from-yellow-100 to-yellow-400 sm:px-6 sm:py-2">
-            <h1 class="text-xl">Primary Post Information</h1>
+            <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                    <div class="text-xl">Primary Post Information</div>
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <button class="{{$twc->red_button_od}} float-right ml-5" x-on:click="show = false">Cancel</button>
+                    <button class="{{$twc->green_button_od}} float-right ml-5" onclick="saveEditorWindowContent()">Save</button>
+                </div>
+            </div>
         </div>
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-yellow-700">
             <div class="grid grid-cols-6 gap-6">

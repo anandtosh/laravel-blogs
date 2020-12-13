@@ -20,7 +20,8 @@ class PostManagement extends Component
     protected $listeners = [
         'deletePost'=>'deletePost',
         'refreshThis'=>'$refresh',
-        'editToggle' => 'editToggle'
+        'editToggle' => 'editToggle',
+        'set:editorContent' => 'contentUpdate',
         ];
     public function mount()
     {
@@ -96,4 +97,33 @@ class PostManagement extends Component
     {
         $this->toggle();
     }
+
+    public function publishStatus($id)
+    {
+        $post = Post::find($id);
+        $status = !$post->published;
+        $post->update(['published'=>$status]);
+        $this->emit('refreshThis');
+        $message = $status?'Published':'Draft';
+        $title = $post->title;
+        $this->emit('swal:alert', [
+            'type'    => 'success',
+            'title'   => 'Status changed to '.$message.'!!',
+            'timeout' => 3000,
+            'icon' => 'success'
+        ]);
+    }
+
+    public function contentUpdate($content)
+    {
+        $this->post['content'] = $content;
+        $this->emit('set:editor',['content'=>$content]);
+        $this->emit('swal:alert', [
+            'type'    => 'success',
+            'title'   => 'Saved Draft!!',
+            'timeout' => 3000,
+            'icon' => 'success'
+        ]);
+    }
+
 }
