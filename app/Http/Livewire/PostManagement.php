@@ -14,14 +14,16 @@ class PostManagement extends Component
 {
     use WithPagination;
     public $post;
-    // public $posts;
+    public $content;
+    public $contentType;
+    public $contentOrder = 0;
     public $categories;
     public $list_page = true;
     protected $listeners = [
         'deletePost'=>'deletePost',
         'refreshThis'=>'$refresh',
         'editToggle' => 'editToggle',
-        'set:editorContent' => 'contentUpdate',
+        'set:editorContent' => 'editorContentUpdate',
         ];
     public function mount()
     {
@@ -55,6 +57,7 @@ class PostManagement extends Component
             unset($this->post['updated_at']);
             Post::where('id',$this->post['id'])->update($this->post);
         }else{
+            $this->post['content']=$this->getContentRow();
             Post::create($this->post);
             $this->posts = Post::all();
         }
@@ -114,9 +117,10 @@ class PostManagement extends Component
         ]);
     }
 
-    public function contentUpdate($content)
+    public function editorContentUpdate($content)
     {
-        $this->post['content'] = $content;
+        $this->content = $content;
+        $this->contentType = 'html';
         $this->emit('set:editor',['content'=>$content]);
         $this->emit('swal:alert', [
             'type'    => 'success',
@@ -124,6 +128,12 @@ class PostManagement extends Component
             'timeout' => 3000,
             'icon' => 'success'
         ]);
+    }
+
+    public function getContentRow()
+    {
+        $this->contentOrder = $this->contentOrder + 1;
+        return [$this->contentOrder =>['type' => $this->contentType,'content' => $this->content]];
     }
 
 }

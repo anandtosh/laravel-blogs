@@ -45,25 +45,38 @@
             <h1 class="text-xl">Post Content</h1>
         </div>
         <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-red-700">
-            <div x-data="{
-                show: false,
-                focusables() {
-                    // All focusable element types...
-                    let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+            <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                    <div x-data="{
+                        show: false,
+                        focusables() {
+                            // All focusable element types...
+                            let selector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
 
-                    return [...$el.querySelectorAll(selector)]
-                        // All non-disabled elements...
-                        .filter(el => ! el.hasAttribute('disabled'))
-                },
-                firstFocusable() { return this.focusables()[0] },
-                lastFocusable() { return this.focusables().slice(-1)[0] },
-                nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-                prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
-                nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-                prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-             }">
-            <button @click="show = true" onclick="editorS()" class="{{$twc->green_button_o}}">Add Content</button>
-            @include('livewire.partials.post.post-content-modal')
+                            return [...$el.querySelectorAll(selector)]
+                                // All non-disabled elements...
+                                .filter(el => ! el.hasAttribute('disabled'))
+                        },
+                        firstFocusable() { return this.focusables()[0] },
+                        lastFocusable() { return this.focusables().slice(-1)[0] },
+                        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+                        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+                        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+                        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+                    }">
+                    <button @click="show = true" onclick="editorS('')" class="{{$twc->green_button_o}}">Add Content</button>
+                    @include('livewire.partials.post.post-content-modal')
+                    </div>
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    @if(isset($post['content']) && $post['content']!='')
+                    @foreach ($post['content'] as $key=>$value)
+                        {{$key.'. '. $value['type']}}
+                    @endforeach
+                    @else
+                    <p>Add Some Content</p>
+                    @endif
+                </div>
             </div>
         </div>
         {{-- post content --}}

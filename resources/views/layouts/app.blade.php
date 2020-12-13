@@ -12,8 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.3/plyr.css" />
-        <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" />
+        {{-- <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" /> --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -44,11 +43,9 @@
         </div>
 
         @stack('modals')
-
         @livewireScripts
-        <script src="https://cdn.plyr.io/3.6.3/plyr.polyfilled.js"></script>
-        <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
-        <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+        {{-- <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script> --}}
+        {{-- <script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script>

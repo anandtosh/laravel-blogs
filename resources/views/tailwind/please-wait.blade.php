@@ -25,31 +25,7 @@
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
         {{-- content here --}}
-        <div class="px-4 py-2 rounded-t bg-gradient-to-r from-yellow-100 to-yellow-400 sm:px-6 sm:py-2">
-            <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-3">
-                    <div class="text-xl">Primary Post Information</div>
-                </div>
-                <div class="col-span-6 sm:col-span-3">
-                    <button class="{{$twc->red_button_od}} float-right ml-5" onclick="destroyEditor()" x-on:click="show = false">Cancel</button>
-                    <button class="{{$twc->green_button_od}} float-right ml-5" onclick="saveEditorWindowContent()">Save</button>
-                </div>
-            </div>
-        </div>
-        <div class="px-4 rounded-b pb-2 bg-white sm:p-6 border-t-2 border-yellow-700">
-            <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6 sm:col-span-6">
-                    <div wire:loading class="text-red-600 text-3xl"> Please wait while saving changes.... </div>
-                </div>
-                <div class="col-span-6 sm:col-span-6">
-                    <div class="ck_container">
-                        <div id="editor_ck">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        please
         {{-- content here --}}
     </div>
 </div>
