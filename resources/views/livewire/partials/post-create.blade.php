@@ -69,13 +69,24 @@
                     </div>
                 </div>
                 <div class="col-span-6 sm:col-span-3">
+                    <div class="grid grid-cols-6">
                     @if(isset($post['content']) && $post['content']!='')
                     @foreach ($post['content'] as $key=>$value)
-                        {{$key.'. '. $value['type']}}
+                        <div class="col-span-4">
+                            {{$value['order']}}. {{$value['type']}}
+                        </div>
+                        <div class="col-span-1">
+                            <button class="{{$twc->blue_button_o}}"> <i class="fa fa-eye" aria-hidden="true"></i> </button>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="{{$twc->red_button_o}}" wire:click="removeContentRow({{$key}})" > <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                        </div>
+
                     @endforeach
                     @else
                     <p>Add Some Content</p>
                     @endif
+                    </div>
                 </div>
             </div>
         </div>

@@ -21,6 +21,7 @@ class PostManagement extends Component
     public $list_page = true;
     protected $listeners = [
         'deletePost'=>'deletePost',
+        'removeContentRowPost' => 'removeContentRowPost',
         'refreshThis'=>'$refresh',
         'editToggle' => 'editToggle',
         'set:editorContent' => 'editorContentUpdate',
@@ -55,11 +56,14 @@ class PostManagement extends Component
         {
             unset($this->post['created_at']);
             unset($this->post['updated_at']);
+            $this->post['content']=$this->getContentRow();
             Post::where('id',$this->post['id'])->update($this->post);
+            $this->emit('refreshThis');
         }else{
             $this->post['content']=$this->getContentRow();
             Post::create($this->post);
             $this->posts = Post::all();
+            $this->emit('refreshThis');
         }
         $this->post = '';
         $this->list_page = true;
@@ -122,18 +126,40 @@ class PostManagement extends Component
         $this->content = $content;
         $this->contentType = 'html';
         $this->emit('set:editor',['content'=>$content]);
+
         $this->emit('swal:alert', [
             'type'    => 'success',
             'title'   => 'Saved Draft!!',
             'timeout' => 3000,
             'icon' => 'success'
         ]);
+        $this->emit('refreshThis');
     }
 
     public function getContentRow()
     {
         $this->contentOrder = $this->contentOrder + 1;
-        return [$this->contentOrder =>['type' => $this->contentType,'content' => $this->content]];
+        return [[ 'order' => $this->contentOrder,'type' => $this->contentType,'content' => $this->content]];
+    }
+
+    public function removeContentRow($key)
+    {
+        $this->emit("swal:confirm", [
+            'type'        => 'warning',
+            'title'       => 'Are you sure?',
+            'text'        => "You won't be able to revert this!",
+            'confirmText' => 'Yes, Remove Content!',
+            'method'      => 'removeContentRowPost',
+            'params'      => $key, // optional, send params to success confirmation
+            'callback'    => '', // optional, fire event if no confirmed
+        ]);
+    }
+
+    public function removeContentRowPost($key)
+    {
+        dd($key);
+        unset($this->post['content'][$key]);
+        $this->emit('refreshThis');
     }
 
 }
