@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SitePostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,8 @@ Route::get('categories',function(){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['prefix' => 'site/{subsite}'], function () {
+    Route::get('/',[SitePostController::class,'index'])->name('site');
+    Route::get('{post}',[SitePostController::class,'index'])->name('site-post');
+});

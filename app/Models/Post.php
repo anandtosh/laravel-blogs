@@ -28,4 +28,9 @@ class Post extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('published',true);
+    }
+
 }

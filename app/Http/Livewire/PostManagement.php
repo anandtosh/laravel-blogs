@@ -138,8 +138,13 @@ class PostManagement extends Component
 
     public function getContentRow()
     {
-        $this->contentOrder = $this->contentOrder + 1;
-        return [[ 'order' => $this->contentOrder,'type' => $this->contentType,'content' => $this->content]];
+        if($this->content!=null){
+            $this->contentOrder = $this->contentOrder + 1;
+            return [[ 'order' => $this->contentOrder,'type' => $this->contentType,'content' => $this->content]];
+        }else{
+            return [];
+        }
+
     }
 
     public function removeContentRow($key)
@@ -157,7 +162,6 @@ class PostManagement extends Component
 
     public function removeContentRowPost($key)
     {
-        dd($key);
         unset($this->post['content'][$key]);
         $this->emit('refreshThis');
     }
